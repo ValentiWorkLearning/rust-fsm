@@ -192,8 +192,8 @@ where
         input: &T::Input,
     ) -> Result<Option<T::Output>, TransitionImpossibleError> {
         if let Some(state) = T::transition(&self.state, input) {
-            let output = T::output(&self.state, input);
             self.state = state;
+            let output = T::output(&self.state, input);
             Ok(output)
         } else {
             Err(TransitionImpossibleError)
